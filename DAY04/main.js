@@ -1,6 +1,8 @@
 import * as $ from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import * as dat from 'dat.gui';
 
+const gui = new dat.GUI();
 const canvas = document.querySelector('#canvas');
 const renderer = new $.WebGL1Renderer({canvas});
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -22,7 +24,7 @@ planeTexture.wrapS = $.RepeatWrapping;
 planeTexture.wrapT = $.RepeatWrapping;
 planeTexture.magFilter = $.NearestFilter;
 planeTexture.repeat.set(14, 14);
-planeTexture.rotation = $.MathUtils.degToRad(45);
+// planeTexture.rotation = $.MathUtils.degToRad(45);
 
 const planeGeo = new $.PlaneGeometry(5, 5);
 const planeMat = new $.MeshBasicMaterial({
@@ -59,6 +61,11 @@ requestAnimationFrame(animate);
 
 const orbitControls = new OrbitControls(camera, canvas);
 orbitControls.update();
+
+
+gui.add(planeTexture.repeat, 'x', 0, 20, 0.01);
+gui.add(planeTexture.repeat, 'y', 0, 20, 0.01);
+gui.add(planeTexture, 'rotation', 0, Math.PI * 2, 0.01);
 
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
