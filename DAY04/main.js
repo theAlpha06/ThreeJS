@@ -15,19 +15,23 @@ const camera = new $.PerspectiveCamera(
 );
 camera.position.set(0, 5, 10);
 
+
 const scene = new $.Scene();
 const textureLoader = new $.TextureLoader();
 
 const planeTexture = new $.TextureLoader().load('https://threejs.org/manual/resources/images/mip-low-res-enlarged.png');
 
-planeTexture.wrapS = $.RepeatWrapping;
-planeTexture.wrapT = $.RepeatWrapping;
+// planeTexture.wrapS = $.RepeatWrapping;
+// planeTexture.wrapT = $.RepeatWrapping;
 planeTexture.magFilter = $.NearestFilter;
-planeTexture.repeat.set(14, 14);
+// planeTexture.repeat.set(14, 14);
 // planeTexture.rotation = $.MathUtils.degToRad(45);
+const light = new $.DirectionalLight(0xffffff, 1);
+light.position.set(0, 5, 10);
+scene.add(light);
 
 const planeGeo = new $.PlaneGeometry(5, 5);
-const planeMat = new $.MeshBasicMaterial({
+const planeMat = new $.MeshStandardMaterial({
   map: planeTexture,
   side: $.DoubleSide,
 });
@@ -36,13 +40,18 @@ plane.rotation.x = -0.5 * Math.PI;
 scene.add(plane);
 
 const BoxTexture = textureLoader.load('https://threejs.org/examples/textures/uv_grid_opengl.jpg');
+const BoxTexture2 = textureLoader.load('https://threejs.org/examples/textures/uv_grid_opengl.jpg');
+BoxTexture.minFilter = $.NearestFilter;
 
 const geo = new $.BoxGeometry(1, 1, 1);
-const material = new $.MeshBasicMaterial({
+const material = new $.MeshStandardMaterial({
   map: BoxTexture
 });
+const material2 = new $.MeshStandardMaterial({
+  map: BoxTexture2
+});
 const cube = new $.Mesh(geo, material);
-const cube2 = new $.Mesh(geo, material);
+const cube2 = new $.Mesh(geo, material2);
 cube.position.set(1, 1, 0);
 cube2.position.set(-1, 1, 0);
 scene.add(cube2);

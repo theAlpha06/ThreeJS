@@ -588,13 +588,16 @@ camera.position.set(0, 5, 10);
 const scene = new _three.Scene();
 const textureLoader = new _three.TextureLoader();
 const planeTexture = new _three.TextureLoader().load("https://threejs.org/manual/resources/images/mip-low-res-enlarged.png");
-planeTexture.wrapS = _three.RepeatWrapping;
-planeTexture.wrapT = _three.RepeatWrapping;
+// planeTexture.wrapS = $.RepeatWrapping;
+// planeTexture.wrapT = $.RepeatWrapping;
 planeTexture.magFilter = _three.NearestFilter;
-planeTexture.repeat.set(14, 14);
+// planeTexture.repeat.set(14, 14);
 // planeTexture.rotation = $.MathUtils.degToRad(45);
+const light = new _three.DirectionalLight(0xffffff, 1);
+light.position.set(0, 5, 10);
+scene.add(light);
 const planeGeo = new _three.PlaneGeometry(5, 5);
-const planeMat = new _three.MeshBasicMaterial({
+const planeMat = new _three.MeshStandardMaterial({
     map: planeTexture,
     side: _three.DoubleSide
 });
@@ -602,8 +605,10 @@ const plane = new _three.Mesh(planeGeo, planeMat);
 plane.rotation.x = -0.5 * Math.PI;
 scene.add(plane);
 const BoxTexture = textureLoader.load("https://threejs.org/examples/textures/uv_grid_opengl.jpg");
+const BoxTexture2 = textureLoader.load("https://threejs.org/examples/textures/uv_grid_opengl.jpg");
+BoxTexture.minFilter = _three.NearestFilter;
 const geo = new _three.BoxGeometry(1, 1, 1);
-const material = new _three.MeshBasicMaterial({
+const material = new _three.MeshStandardMaterial({
     map: BoxTexture
 });
 const cube = new _three.Mesh(geo, material);
