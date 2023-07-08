@@ -1,5 +1,4 @@
 import * as $ from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const canvas = document.querySelector('#canvas');
 const renderer = new $.WebGL1Renderer({canvas});
