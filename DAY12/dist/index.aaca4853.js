@@ -582,8 +582,8 @@ const renderer = new _three.WebGL1Renderer({
     alpha: true,
     premultipliedAlpha: false
 });
-renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
-const camera = new _three.PerspectiveCamera(45, window.innerWidth / 2 / (window.innerHeight / 2), 0.1, 100);
+renderer.setSize(window.innerWidth, window.innerHeight);
+const camera = new _three.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
 camera.position.set(-60, 0, 0);
 camera.lookAt(0, 0, 0);
 let objects = [];
@@ -633,7 +633,7 @@ for(let i = 0; i < 100; i++)cuboidGenerator(Math.random() * 2, Math.random() * 2
 const mousePositon = new _three.Vector2();
 window.addEventListener("mousemove", (e)=>{
     mousePositon.x = e.clientX / window.innerWidth * 2 - 1;
-    mousePositon.y = -(e.clientY / (window.innerHeight / 2)) * 2 + 1;
+    mousePositon.y = -(e.clientY / window.innerHeight) * 2 + 1;
 });
 const raycaster = new _three.Raycaster();
 const animate = ()=>{

@@ -7,11 +7,11 @@ const renderer = new $.WebGL1Renderer({
   alpha: true,
   premultipliedAlpha: false,
 });
-renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+renderer.setSize(window.innerWidth , window.innerHeight);
 
 const camera = new $.PerspectiveCamera(
   45,
-  (window.innerWidth / 2) / (window.innerHeight / 2),
+  (window.innerWidth) / (window.innerHeight),
   0.1,
   100
 );
@@ -92,7 +92,7 @@ const mousePositon = new $.Vector2();
 
 window.addEventListener('mousemove', (e) => {
   mousePositon.x = (e.clientX / (window.innerWidth)) * 2 - 1;
-  mousePositon.y = -(e.clientY / (window.innerHeight / 2)) * 2 + 1;
+  mousePositon.y = -(e.clientY / (window.innerHeight)) * 2 + 1;
 });
 
 const raycaster = new $.Raycaster();
