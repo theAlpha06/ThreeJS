@@ -27,8 +27,6 @@ const planeMat = new THREE.MeshBasicMaterial({
     wireframe: true
 });
 const planeMesh = new THREE.Mesh(planeGeo, planeMat);
-// planeMesh.rotation.x = Math.PI / 180 * 90;
-// planeMesh.rotation.y = Math.PI / 180 * 45;
 scene.add(planeMesh);
 
 
@@ -66,21 +64,6 @@ groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
 world.addBody(groundBody);
 
 
-// const sphereMaterial = new CANNON.Material();
-// const sphereBody = new CANNON.Body({
-//     mass: 3, 
-//     position: new CANNON.Vec3(0, 10, 5),
-//     shape: new CANNON.Sphere(0.125),
-//     material: sphereMaterial,
-// });
-// sphereBody.linearDamping = 0.4;
-
-// const groundSphereContactMat = new CANNON.ContactMaterial(
-//     groundMaterial,
-//     sphereMaterial,
-//     { restitution: 0.9 }
-// );
-// world.addContactMaterial(groundSphereContactMat);
 
 
 window.addEventListener('click', function (e) {
@@ -103,8 +86,6 @@ function animate() {
     planeMesh.position.copy(groundBody.position);
     planeMesh.quaternion.copy(groundBody.quaternion);
 
-    // sphereMesh.position.copy(sphereBody.position);
-    // sphereMesh.quaternion.copy(sphereBody.quaternion);
 
     renderer.render(scene, camera);
 }
