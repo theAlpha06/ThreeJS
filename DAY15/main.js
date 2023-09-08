@@ -65,31 +65,30 @@ const groundBody = new CANNON.Body({
 groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
 world.addBody(groundBody);
 
-const sphereGeo = new THREE.SphereGeometry(0.125, 30, 30);
-const sphereMat = new THREE.MeshBasicMaterial({
-    color: 0xFFEA00
-});
-const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
 
-const sphereMaterial = new CANNON.Material();
-const sphereBody = new CANNON.Body({
-    mass: 3, 
-    position: new CANNON.Vec3(0, 10, 5),
-    shape: new CANNON.Sphere(0.125),
-    material: sphereMaterial,
-});
-sphereBody.linearDamping = 0.4;
+// const sphereMaterial = new CANNON.Material();
+// const sphereBody = new CANNON.Body({
+//     mass: 3, 
+//     position: new CANNON.Vec3(0, 10, 5),
+//     shape: new CANNON.Sphere(0.125),
+//     material: sphereMaterial,
+// });
+// sphereBody.linearDamping = 0.4;
 
-const groundSphereContactMat = new CANNON.ContactMaterial(
-    groundMaterial,
-    sphereMaterial,
-    { restitution: 0.9 }
-);
-world.addContactMaterial(groundSphereContactMat);
+// const groundSphereContactMat = new CANNON.ContactMaterial(
+//     groundMaterial,
+//     sphereMaterial,
+//     { restitution: 0.9 }
+// );
+// world.addContactMaterial(groundSphereContactMat);
 
 
 window.addEventListener('click', function (e) {
-    console.log(sphereMesh);
+    const sphereGeo = new THREE.SphereGeometry(0.125, 30, 30);
+    const sphereMat = new THREE.MeshBasicMaterial({
+        color: 0xFFEA00
+    });
+    const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
     scene.add(sphereMesh);
     sphereMesh.position.copy(intersectionPoint);
     world.addBody(sphereBody)
@@ -104,8 +103,8 @@ function animate() {
     planeMesh.position.copy(groundBody.position);
     planeMesh.quaternion.copy(groundBody.quaternion);
 
-    sphereMesh.position.copy(sphereBody.position);
-    sphereMesh.quaternion.copy(sphereBody.quaternion);
+    // sphereMesh.position.copy(sphereBody.position);
+    // sphereMesh.quaternion.copy(sphereBody.quaternion);
 
     renderer.render(scene, camera);
 }
@@ -117,3 +116,6 @@ window.addEventListener('resize', function () {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 })
+
+
+
