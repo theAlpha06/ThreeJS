@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAY12 | ThreeJS</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .full_screen {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 99999;
+      color: white;
+      background-color: black;
+      border-radius: 1rem;
+      margin: 0;
+      padding: 0.4rem;
+      border: 1px white solid;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c"></canvas>
+  <button class="full_screen" id="maximize">Full Screen</button>
+  <script type="module" src="main.js"></script>
+  <script>
+    const canvas = document.querySelector('#c');
+    const fullScreenBtn = document.getElementById('maximize');
+    const fullScreenToggle = () => {
+
+      if (canvas.requestFullscreen) {
+        canvas.requestFullscreen();
+      }
+    }
+
+    fullScreenBtn.addEventListener('click', fullScreenToggle);
+  </script>
+</body>
+
+</html>
