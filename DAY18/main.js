@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import * as dat from 'dat.gui';
 
 const fileUrl = new URL('./models/Donkey.gltf', import.meta.url);
 
@@ -33,11 +34,48 @@ orbit.update();
 
 const assetLoader = new GLTFLoader();
 
+const gui = new dat.GUI();
+
+const options = {
+    'Main': 0x2F3130,
+    'Main light': 0x7C7C7C,
+    'Main dark': 0x0A0A0A,
+    'Hooves': 0x0F0B0D,
+    'Hair': 0x0A0A0A,
+    'Muzzle': 0x0B0804,
+    'Eye dark': 0x020202,
+    'Eye white': 0xBEBEBE
+}
+
 assetLoader.load(fileUrl.href, function(gltf) {
     const model = gltf.scene;
     scene.add(model);
-    console.log(model.getObjectByName('Cube_1'));
-    model.getObjectByName('Cube_1').material.color.setHex(0x00ff00)
+
+    gui.addColor(options, 'Main').onChange(function(e) {
+        model.getObjectByName('Cube').material.color.setHex(e);
+    });
+    gui.addColor(options, 'Main light').onChange(function(e) {
+        model.getObjectByName('Cube_1').material.color.setHex(e);
+    });
+    gui.addColor(options, 'Main dark').onChange(function(e) {
+        model.getObjectByName('Cube_2').material.color.setHex(e);
+    });
+    gui.addColor(options, 'Hooves').onChange(function(e) {
+        model.getObjectByName('Cube_3').material.color.setHex(e);
+    });
+    gui.addColor(options, 'Hair').onChange(function(e) {
+        model.getObjectByName('Cube_4').material.color.setHex(e);
+    });
+    gui.addColor(options, 'Muzzle').onChange(function(e) {
+        model.getObjectByName('Cube_5').material.color.setHex(e);
+    });
+    gui.addColor(options, 'Eye dark').onChange(function(e) {
+        model.getObjectByName('Cube_6').material.color.setHex(e);
+    });
+    gui.addColor(options, 'Eye white').onChange(function(e) {
+        model.getObjectByName('Cube_7').material.color.setHex(e);
+    });
+
 }, undefined, function(error) {
     console.error(error);
 });
