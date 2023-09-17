@@ -36,7 +36,8 @@ const assetLoader = new GLTFLoader();
 assetLoader.load(fileUrl.href, function(gltf) {
     const model = gltf.scene;
     scene.add(model);
-    console.log(model)
+    console.log(model.getObjectByName('Cube_1'));
+    model.getObjectByName('Cube_1').material.color.setHex(0x00ff00)
 }, undefined, function(error) {
     console.error(error);
 });
