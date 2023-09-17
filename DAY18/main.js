@@ -1,14 +1,13 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+const fileUrl = new URL('./models/Donkey.gltf', import.meta.url);
 
 const canvas = document.querySelector('#c');
-const renderer = new THREE.WebGLRenderer({ canvas });
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-
 renderer.setClearColor(0xA3A3A3);
-
 
 
 const scene = new THREE.Scene();
@@ -32,25 +31,15 @@ directionalLight.position.set(10, 11, 7);
 camera.position.set(6, 8, 14);
 orbit.update();
 
+const assetLoader = new GLTFLoader();
 
-const loader = new OBJLoader();
-const mtlLoader = new MTLLoader();
-
-mtlLoader.setPath('./models/');
-mtlLoader.load('Donkey.mtl', function(loadedMesh){
-    loader.materials = loadedMesh;
-    loader.load('models/Donkey.obj', function (object) {
-        scene.add(object);
-    },
-        function (xhr) {
-            console.log(xhr.loaded / xhr.total * 100)
-        },
-        function (error) {
-    
-            console.log('An error happened');
-    
-        })
-})
+assetLoader.load(fileUrl.href, function(gltf) {
+    const model = gltf.scene;
+    scene.add(model);
+    console.log(model)
+}, undefined, function(error) {
+    console.error(error);
+});
 
 const gridHelper = new THREE.GridHelper(12, 12);
 scene.add(gridHelper);
