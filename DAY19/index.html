@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAY19 | ThreeJS</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .controls {
+      position: absolute;
+      z-index: 1000;
+      top: 10px;
+      left: 10px;
+    }
+
+    .ctrl_btn {
+      border: none;
+      border-radius: 1rem;
+      margin-bottom: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    details {
+      font:
+        16px "Open Sans",
+        Calibri,
+        sans-serif;
+      width: fit-content;
+    }
+
+    details>summary {
+      font: bold;
+      padding: 6px;
+      background-color: #ddd;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 3px 3px 4px black;
+      cursor: pointer;
+    }
+
+    details>ul {
+      border-radius: 0 0 10px 10px;
+      background-color: #ddd;
+      padding: 6px;
+      margin: 0;
+      box-shadow: 3px 3px 4px black;
+    }
+    .stop{
+      float: right;
+    }
+
+    details[open]>summary {
+      border-radius: 10px 10px 0 0;
+      background-color: #ccf;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c"></canvas>
+  <div class="controls">
+    <details>
+      <summary>Controls</summary>
+      <ul>
+        <li><button class="ctrl_btn">Run</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Walk</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Attack_Headbutt</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Attact_Kick</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Death</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Gallop_Jump</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Idle_2</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Idle_Headlow</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Idle_HitReact1</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Idle_HitReact2</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Jump_toldle</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Idle</button><span class="stop">Stop</span></li>
+        <li><button class="ctrl_btn">Eating</button><span class="stop">Stop</span></li>
+      </ul>
+    </details>
+  </div>
+  <script type="module" src="main.js"></script>
+
+</body>
+
+</html>
